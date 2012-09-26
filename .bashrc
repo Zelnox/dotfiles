@@ -1,22 +1,31 @@
 # Aliases
 alias ls='ls -G' # for colours
 alias gw='cd ~/Documents/work/'
+alias gsb='cd ~/Dropbox/sandbox/'
 
 # Homebrew
 if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
 
-# Shell prompt
-#. ~/.bash_prompt
-function EXT_COLOR () { echo -ne "\e[38;5;$1m"; }
-function CLOSE_COLOR () { echo -ne '\e[m'; }
-export PS1="\[`EXT_COLOR 187`\]\u@\h\[`CLOSE_COLOR`\]\[`EXT_COLOR 174`\] \w \$ \[`CLOSE_COLOR`\] > "
-export PS2="> "
-export LSCOLORS=Exfxcxdxbxegedabagacad
-#export LSCOLORS='di=38;5;108:fi=00:ln=38;5;116:ex=38;5;186'
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# Ruby stuff (RVM, gem paths)
-#. ~/.bash_ruby
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+source ~/.git-completion.bash
+source ~/.git-prompt.sh
+function rvm_version {
+  local gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
+    [ "$gemset" != "" ] && echo "@$gemset"
+}
+function BRANCH {
+  __git_ps1 " (%s) "
+}
+function COLOR_ON {
+  echo -ne "\[\e[38;5;$1m\]"
+}
+function COLOR_OFF {
+  echo -ne "\[\e[m\]"
+}
+export GIT_PS1_SHOWDIRTYSTATE=false
+export GIT_PS1_SHOWUNTRACKEDFILES=false
+export PS1="$(COLOR_ON 99)\u$(COLOR_OFF)$(COLOR_ON 125)@$(COLOR_OFF)$(COLOR_ON 95)\h$(COLOR_OFF) \W$(rvm_version) \$(BRANCH) \$ "
+export PS2="> "

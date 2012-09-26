@@ -1,5 +1,5 @@
 syntax on
-colorscheme lucius
+colorscheme xoria256
 
 if &term =~ "xterm-256color" 
 	 set t_Co=256 
@@ -80,3 +80,6 @@ inoremap <C-l>  =>
 " faster scrolling
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+
+call pathogen#infect()
+filetype plugin indent on
