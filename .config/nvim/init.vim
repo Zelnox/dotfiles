@@ -11,6 +11,7 @@ Plug 'guns/jellyx.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neomru.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
@@ -67,10 +68,18 @@ Plug 'scwood/vim-hybrid'
 Plug 'mhinz/vim-janah'
 Plug 'easysid/mod8.vim'
 Plug 'zacanger/angr.vim'
-Plug 'jansenfuller/crayon'
 Plug 'rhysd/vim-color-spring-night'
 Plug 'ayu-theme/ayu-vim'
 Plug 'nightsense/seabird'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'dikiaap/minimalist'
+Plug 'fent/vim-frozen'
+Plug 'prognostic/plasticine'
+Plug 'arcticicestudio/nord-vim'
+Plug 'float168/vim-colors-cherryblossom'
+Plug 'exitface/synthwave.vim'
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'nightsense/vim-crunchbang'
 
 call plug#end()
 
@@ -256,3 +265,6 @@ nnoremap <silent> [denite]f :<C-u>Denite file_rec line<CR>
 "let ruby_fold = 1
 "let ruby_foldable_groups = 'do'
 "
+"
+
+let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, '~/.bashrc', '~/.bash_profile', '~/.tmux.conf' ]
