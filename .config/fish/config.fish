@@ -48,3 +48,7 @@ end
 
 alias be "bundle exec"
 alias bem "bundle exec minitest"
+
+source /usr/local/share/chruby/chruby.fish
+source /usr/local/share/chruby/auto.fish
+source /usr/local/share/gem_home/gem_home.fish

@@ -21,6 +21,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mileszs/ack.vim'
 Plug 'luochen1990/rainbow'
 Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'christoomey/vim-system-copy'
 Plug 'kshenoy/vim-signature'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -33,13 +34,18 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'janko-m/vim-test', { 'for': ['ruby', 'elixir'] }
 Plug 'tpope/vim-endwise', { 'for': ['ruby', 'elixir'] }
 Plug 'sunaku/vim-ruby-shoulda-context', { 'for': 'ruby' }
+Plug 'rlue/vim-fold-rspec', { 'for': 'ruby' }
 Plug 'jgdavey/tslime.vim', { 'for': ['elixir', 'ruby'] }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'eelixir'] }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'othree/html5.vim', { 'for': ['html', 'eruby'] }
+Plug 'burnettk/vim-angular', { 'for': ['html', 'eruby'] }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'jparise/vim-graphql', { 'for': 'graphql' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'vim-scripts/xoria256.vim'
 Plug 'jonathanfilip/vim-lucius'
@@ -51,7 +57,6 @@ Plug 'hhsnopek/vim-firewatch'
 Plug 'roosta/srcery'
 Plug 'goatslacker/mango.vim'
 Plug 'jacoborus/tender.vim'
-Plug 'aereal/vim-colors-japanesque'
 Plug 'rakr/vim-two-firewatch'
 Plug 'cseelus/vim-colors-lucid'
 Plug 'MvanDiemen/ghostbuster'
@@ -61,16 +66,12 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-startify'
 Plug 'AlessandroYorba/Alduin'
 Plug 'AlessandroYorba/Sierra'
-Plug 'AlessandroYorba/Monrovia'
 Plug 'Marfisc/vorange'
 Plug 'juanedi/predawn.vim'
 Plug 'scwood/vim-hybrid'
 Plug 'mhinz/vim-janah'
 Plug 'easysid/mod8.vim'
 Plug 'zacanger/angr.vim'
-Plug 'rhysd/vim-color-spring-night'
-Plug 'ayu-theme/ayu-vim'
-Plug 'nightsense/seabird'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'dikiaap/minimalist'
 Plug 'fent/vim-frozen'
@@ -80,6 +81,15 @@ Plug 'float168/vim-colors-cherryblossom'
 Plug 'exitface/synthwave.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'nightsense/vim-crunchbang'
+Plug 'KKPMW/sacredforest-vim'
+Plug 'sts10/vim-pink-moon'
+Plug 'dennougorilla/azuki.vim'
+Plug 'fcpg/vim-farout'
+Plug 'BrainDeath0/Hypsteria'
+Plug 'haishanh/night-owl.vim'
+Plug 'koirand/tokyo-metro.vim'
+Plug 'victorze/foo'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
 call plug#end()
 
@@ -193,10 +203,12 @@ set colorcolumn=111
 "highlight ColorColumn ctermbg=darkred guibg=#ff00ff
 "call matchadd('ColorColumn', '\%101v', 100)
 " #F71862
-augroup init_autocmds
-  autocmd BufEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#f95189 guifg=#333333
-  autocmd BufEnter * match OverLength /\%>111v.\+/
-augroup END
+
+" disable for now
+"augroup init_autocmds
+"  autocmd BufEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#f95189 guifg=#333333
+"  autocmd BufEnter * match OverLength /\%>111v.\+/
+"augroup END
 highlight ColorColumn ctermbg=gray guibg=#111111 guifg=#333333
 
 highlight CursorColumn guibg=#eeeeee ctermbg=red
@@ -234,6 +246,8 @@ end
 
 " for fzf
 set rtp+=/usr/local/opt/fzf
+nmap ; :Buffers<CR>
+nmap <LocalLeader>f :GFiles<cr>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -260,11 +274,5 @@ nnoremap [denite] <Nop>
 nmap <Tab> [denite]
 nnoremap <silent> [denite]u :<C-u>Denite file_mru<CR>
 nnoremap <silent> [denite]f :<C-u>Denite file_rec line<CR>
-
-" ruby folding / performance
-"let ruby_fold = 1
-"let ruby_foldable_groups = 'do'
-"
-"
 
 let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, '~/.bashrc', '~/.bash_profile', '~/.tmux.conf' ]
