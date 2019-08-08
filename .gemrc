@@ -1,4 +1,4 @@
 ---
 :verbose: true
 :backtrace: false
-gem: --no-ri --no-rdoc
+gem: --no-document
